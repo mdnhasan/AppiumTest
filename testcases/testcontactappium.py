@@ -117,7 +117,10 @@ time.sleep(3)
 driver.find_elements(By.ID,'com.mobeta.android.demodslv:id/activity_title')[0].click()
 time.sleep(2)
 elements = driver.find_elements(By.ID, 'com.mobeta.android.demodslv:id/drag_handle')
-
 print(len(elements))
+
+actions = TouchAction(driver)
+actions.press(elements[0]).wait(3000).move_to(elements[3]).perform().release()
+
 print("Code Run Successfully")
 driver.quit()

@@ -1,0 +1,88 @@
+Python Code
+desired_caps = dict(
+
+    deviceName='Android',
+    platformName='Android',
+    appPackage='flipboard.app',
+    appActivity='flipboard.activities.LaunchActivity'
+)
+
+driver = webdriver.Remote('http://127.0.0.1:4723/wd/hub', desired_caps)
+driver.implicitly_wait(5)
+
+
+or 
+
+# desired_caps = {}
+# desired_caps['deviceName'] = 'Android'
+# desired_caps['platformName'] = 'Android'
+# desired_caps['appPackage'] = 'com.amazon.mShop.android.shopping'
+# desired_caps['appActivity'] = 'com.amazon.mShop.splashscreen.StartupActivity'
+
+
+
+
+
+
+
+=============================
+$ dumpsys window windows | grep -E 'mTopActivityComponent'     --- Android Shell to check open app
+
+dumpsys window windows | grep -E 'mCurrentFocus'
+
+
+adb shell am start -W -n com.amazon.mShop.android.shopping/com.amazon.mShop.navigation.MainActivity -S -a android.intent.action.MAIN -c android.intent.category.LAUNCHER -f 0x10200000
+
+
+
+
+
+
+M Date --- 02/11/2019 
+
+
+
+====Android UI Auomate command ===
+
+from appium.webdriver.common.appiumby import AppiumBy
+driver.find_element(AppiumBy.ANDROID_UIAUTOMATOR, '')
+
+
+=== Accessbility found command
+from appium.webdriver.common.appiumby import AppiumBy
+driver.find_element(AppiumBy.ACCESSIBILITY_ID, "Create new contact").click()
+
+=====Android Keyword== 
+
+import time
+
+from appium import webdriver
+from appium.webdriver.common.appiumby import AppiumBy
+from appium.webdriver.appium_service import AppiumService
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.by import By
+import random
+from selenium.webdriver.support.select import Select
+
+from appium import webdriver
+from pathlib import Path
+from appium.webdriver.common.appiumby import AppiumBy
+from appium.webdriver.appium_service import AppiumService
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.select import Select
+from appium.webdriver.common.touch_action import TouchAction
+
+
+====Android Ui automator code===
+
+driver.find_element(AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("Skip sign in")')
+
+===Android UI Automator Scroll === 
+driver.find_element(AppiumBy.ANDROID_UIAUTOMATOR, 'new UiScrollable(new UiSelector().scrollable(true).instance(0))')
+
+Full
+-----
+driver.find_element(AppiumBy.ANDROID_UIAUTOMATOR, 'new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains("Lee Men").instance(0))')
