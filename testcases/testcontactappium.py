@@ -122,5 +122,6 @@ print(len(elements))
 actions = TouchAction(driver)
 actions.press(elements[0]).wait(3000).move_to(elements[3]).perform().release()
 
+time.sleep(5)
 print("Code Run Successfully")
 driver.quit()
