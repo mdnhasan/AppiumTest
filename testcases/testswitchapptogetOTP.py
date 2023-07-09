@@ -73,8 +73,8 @@ driver.start_activity('com.android.mms', '.ui.ConversationList')
 
 # driver.find_elements_by_id('com.android.mms:id/subject')[0].click()
 #
-# messages = driver.find_elements_by_id('com.android.mms:id/text_view')
-# text = messages[len(messages) - 1].text
+messages = driver.find_elements_by_id('com.android.mms:id/text_view')
+text = messages[len(messages) - 1].text[83:89]
 # print(text[83:89])
 
 time.sleep(5)
