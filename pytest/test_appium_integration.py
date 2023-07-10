@@ -1,4 +1,6 @@
+import allure
 import pytest
+from allure_commons.types import AttachmentType
 from appium import webdriver
 from appium.webdriver.appium_service import AppiumService
 import time
@@ -35,6 +37,18 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.select import Select
 from appium.webdriver.common.touch_action import TouchAction
 
+"""FOr Failed Test Case Take Screenshot"""
+
+
+# @pytest.fixture() ###Commented when use global varialbe from conftest file
+# def log_on_failure(request,appium_driver):
+#     yield
+#     item = request.node
+#     driver =appium_driver
+#     if item.rep_call.failed:
+#         allure.attach(driver.get_screenshot_as_png(), name="Screenshot",
+#                       attachment_type=AttachmentType.PNG)  ###Success Sceenshot
+
 
 def getData():
     return [
@@ -51,25 +65,26 @@ def getData():
 """setup_function (For run times need in one test case if two or more value like dubai and delhi)"""
 
 
-def setup_function():
-    global driver
-    desired_caps = {}
-    desired_caps['deviceName'] = 'Android'
-    desired_caps['platformName'] = 'Android'
-    desired_caps['appPackage'] = 'com.goibibo'
-    desired_caps['appActivity'] = '.common.HomeActivity'
-    desired_caps['noReset'] = True
-    driver = webdriver.Remote('http://127.0.0.1:4723/wd/hub', desired_caps)
-    driver.implicitly_wait(5)
+# def setup_function():  ###Commented when use global varialbe from conftest file
+#     global driver
+#     desired_caps = {}
+#     desired_caps['deviceName'] = 'Android'
+#     desired_caps['platformName'] = 'Android'
+#     desired_caps['appPackage'] = 'com.goibibo'
+#     desired_caps['appActivity'] = '.common.HomeActivity'
+#     desired_caps['noReset'] = True
+#     driver = webdriver.Remote('http://127.0.0.1:4723/wd/hub', desired_caps)
+#     driver.implicitly_wait(5)
+#
+#
+# def teardown_function():
+#     time.sleep(3)
+#     driver.quit()
 
-
-def teardown_function():
-    time.sleep(3)
-    driver.quit()
-
-
+@pytest.mark.usefixtures("log_on_failure")
 @pytest.mark.parametrize("city", getData())
-def test_login(city):
+def test_login(city,appium_driver):
+    driver = appium_driver
     driver.find_element(By.XPATH, "//android.widget.TextView[@text='Hotels']").click()
     time.sleep(2)
     driver.find_element(By.XPATH, "//android.widget.TextView[@text='City, Area or Property Name']").click()
@@ -80,9 +95,12 @@ def test_login(city):
     driver.find_elements(By.ID, "com.goibibo:id/lytChildNode1")[0].click()
     time.sleep(4)
     driver.find_element(By.ID, "com.goibibo:id/verticalHomeSearchButton").click()
-    time.sleep(5)
+    time.sleep(1)
     citytext = driver.find_element(By.XPATH, "//android.widget.TextView[contains(@text, 'Top Areas to Stay')]").text
     print(citytext)
+    """Attach Screenshot to allure report"""
+    # allure.attach(driver.get_screenshot_as_png(), name="Screenshot", attachment_type=AttachmentType.PNG) ###Success Sceenshot
+
 
 #######Code From Lecture##############
 #
