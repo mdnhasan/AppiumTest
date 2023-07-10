@@ -4,6 +4,7 @@ from appium import webdriver
 # from appium.webdriver.common.appiumby import AppiumBy
 # from appium.webdriver.appium_service import AppiumService
 # from selenium.webdriver.common.keys import Keys
+from appium.webdriver.appium_service import AppiumService
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
 
@@ -14,8 +15,10 @@ desired_caps = dict(
     browserName='Chrome'
 )
 
-# appium_service = AppiumService()
-# appium_service.start()
+appium_service = AppiumService()
+appium_service.start()
+appium_service.is_listening()
+appium_service.is_running
 
 
 driver = webdriver.Remote('http://127.0.0.1:4723/wd/hub', desired_caps)
@@ -38,4 +41,4 @@ for option in options:
 time.sleep(5)
 driver.quit()
 
-# appium_service.stop()
+appium_service.stop()
