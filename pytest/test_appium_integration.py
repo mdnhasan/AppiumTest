@@ -37,6 +37,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.select import Select
 from appium.webdriver.common.touch_action import TouchAction
 
+
 """FOr Failed Test Case Take Screenshot"""
 
 
@@ -81,33 +82,57 @@ def getData():
 #     time.sleep(3)
 #     driver.quit()
 
-# @pytest.mark.usefixtures("log_on_failure")
-@pytest.mark.parametrize("city", getData())
-def test_login(city,appium_driver):
+###########################################################################
+# # @pytest.mark.usefixtures("log_on_failure")
+# @pytest.mark.parametrize("city", getData())
+# def test_login(city,appium_driver):
+#     driver = appium_driver
+#     driver.find_element(By.XPATH, "//android.widget.TextView[@text='Hotels']").click()
+#     time.sleep(2)
+#     driver.find_element(By.XPATH, "//android.widget.TextView[@text='City, Area or Property Name']").click()
+#     time.sleep(2)
+#     print(city)
+#     driver.find_element(By.ID, "com.goibibo:id/edtSearch").send_keys(city)
+#     time.sleep(2)
+#     driver.find_elements(By.ID, "com.goibibo:id/lytChildNode1")[0].click()
+#     time.sleep(4)
+#     driver.find_element(By.ID, "com.goibibo:id/verticalHomeSearchButton").click()
+#     time.sleep(10)
+#     citytext = driver.find_element(By.XPATH, "//android.widget.TextView[contains(@text, 'Top Areas to Stay')]").text
+#     print(citytext)
+#     """Attach Screenshot to allure report"""
+#     allure.attach(driver.get_screenshot_as_png(), name="Screenshot", attachment_type=AttachmentType.PNG) ###Success Sceenshot
+
+########################################################################################
+
+# driver.swipe(1130,834,0,0,1000) nto scroll any place with point location
+
+#####################
+
+def test_searchVillas(appium_driver):
     driver = appium_driver
-    driver.find_element(By.XPATH, "//android.widget.TextView[@text='Hotels']").click()
+    time.sleep(10)
+    driver.find_element(By.XPATH, "//android.widget.TextView[contains(@text='Cabs')]").click()
     time.sleep(2)
-    driver.find_element(By.XPATH, "//android.widget.TextView[@text='City, Area or Property Name']").click()
+    driver.find_element(By.XPATH, "//android.widget.TextView[@text='City, Area or Landmark']").click()
     time.sleep(2)
-    print(city)
-    driver.find_element(By.ID, "com.goibibo:id/edtSearch").send_keys(city)
+    driver.find_element(By.ID, "com.goibibo:id/edtSearch").send_keys("Delhi")
     time.sleep(2)
     driver.find_elements(By.ID, "com.goibibo:id/lytChildNode1")[0].click()
-    time.sleep(4)
-    driver.find_element(By.ID, "com.goibibo:id/verticalHomeSearchButton").click()
-    time.sleep(10)
-    citytext = driver.find_element(By.XPATH, "//android.widget.TextView[contains(@text, 'Top Areas to Stay')]").text
-    print(citytext)
-    """Attach Screenshot to allure report"""
-    allure.attach(driver.get_screenshot_as_png(), name="Screenshot", attachment_type=AttachmentType.PNG) ###Success Sceenshot
-
-
-
-
-
-
-
-
+    time.sleep(2)
+    driver.find_element(By.XPATH, "//android.widget.TextView[@text='Other']").click()
+    time.sleep(2)
+    driver.find_element(By.XPATH, "//android.widget.TextView[@text='14']").click()
+    time.sleep(2)
+    driver.find_element(By.XPATH, "//android.widget.TextView[contains(@text='Continue')]").click()
+    time.sleep(2)
+    driver.find_element(By.XPATH, "//android.widget.Button[@text='Search Hourly Stays']").click()
+    time.sleep(5)
+    elem= driver.find_element(AppiumBy.ANDROID_UIAUTOMATOR,
+                                 'new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new '
+                                 'UiSelector().textContains("Hotel The Ventus by Hotel vegas").instance(0))')
+    elem.click()
+    time.sleep(5)
 
 
 
