@@ -11,7 +11,7 @@ driver = webdriver.Remote('http://127.0.0.1:4723/wd/hub', desired_caps)
 driver.implicitly_wait(5)
 
 
-or 
+or
 
 # desired_caps = {}
 # desired_caps['deviceName'] = 'Android'
@@ -38,7 +38,7 @@ adb shell am start -W -n com.amazon.mShop.android.shopping/com.amazon.mShop.navi
 
 
 
-M Date --- 02/11/2019 
+M Date --- 02/11/2019
 
 
 
@@ -52,7 +52,7 @@ driver.find_element(AppiumBy.ANDROID_UIAUTOMATOR, '')
 from appium.webdriver.common.appiumby import AppiumBy
 driver.find_element(AppiumBy.ACCESSIBILITY_ID, "Create new contact").click()
 
-=====Android Keyword== 
+=====Android Keyword==
 
 import time
 
@@ -80,7 +80,7 @@ from selenium.webdriver.support.select import Select
 
 driver.find_element(AppiumBy.ANDROID_UIAUTOMATOR, 'new UiSelector().text("Skip sign in")')
 
-===Android UI Automator Scroll === 
+===Android UI Automator Scroll ===
 driver.find_element(AppiumBy.ANDROID_UIAUTOMATOR, 'new UiScrollable(new UiSelector().scrollable(true).instance(0))')
 
 Full
@@ -92,18 +92,18 @@ Soft Assert COmmand
 """Soft Assert COmmand in Terminal"""
 """pytest test_validate_title.py -s -v --soft-asserts"""
 
-===========Android Terminal COmmand== 
-pytest test_appium_integration.py --html=testreports.html ##for html report need to add pytest-html 
+===========Android Terminal COmmand==
+pytest test_appium_integration.py --html=testreports.html ##for html report need to add pytest-html
 
 =============Allure Report =====
 Download Allure from https://repo.maven.apache.org/maven2/io/qameta/allure/allure-commandline/2.21.0/
-set system as global in system environmental path 
-install allure-pytest package in project 
-add allure report directory 
+set system as global in system environmental path
+install allure-pytest package in project
+add allure report directory
 use command >> pytest test_appium_integration.py --alluredir="./allurereport" (Directoryname)
 
 after completing test use command to make html report from allure >> allure server ./allurereport (Directoryname)
-or 
+or
 
 use command in cmd >>>allure serve C:\Users\nasim\PycharmProjects\AppiumTest\pytest\allurereport (Project DIct)
 
@@ -126,7 +126,7 @@ def pytest_runtest_makereport(item, call):
     return rep
 ---
 
-then Add following line in test case after import list 
+then Add following line in test case after import list
 ----
 @pytest.fixture()
 def log_on_failure(request):
@@ -135,16 +135,16 @@ def log_on_failure(request):
     if item.rep_call.failed:
         allure.attach(driver.get_screenshot_as_png(), name="Screenshot",
                       attachment_type=AttachmentType.PNG)  ###Success Sceensho
-					  
+
 -------
-Add the line before test case 
+Add the line before test case
 @pytest.mark.usefixtures("log_on_failure")
 
-
+==
 =============
-Log generation 
+Log generation
 ====
-Create a utilities folder and log folder 
+Create a utilities folder and log folder
 import logging
 
 # logging.basicConfig(filename="..\\logs\\logfile.log", format='%(asctime)s: %(levelname)s: %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p'
