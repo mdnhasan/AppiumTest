@@ -1,6 +1,6 @@
 import openpyxl
 
-path = "..//excel//AbisServerInfor.xlsx"
+path = "..//excel//testdata.xlsx"
 sheetname = "Sheet1"
 
 

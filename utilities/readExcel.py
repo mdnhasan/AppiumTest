@@ -7,6 +7,7 @@ sheet = workbook["Sheet1"]
 totalrows = sheet.max_row
 totalcolumn = sheet.max_column
 
+
 # print("total rows are", str(totalrows),"Total cols are", str(totalcolumn))
 #
 # print(sheet.cell(row=2, column=2).value)

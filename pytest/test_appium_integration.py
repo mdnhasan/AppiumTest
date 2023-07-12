@@ -81,7 +81,7 @@ def getData():
 #     time.sleep(3)
 #     driver.quit()
 
-@pytest.mark.usefixtures("log_on_failure")
+# @pytest.mark.usefixtures("log_on_failure")
 @pytest.mark.parametrize("city", getData())
 def test_login(city,appium_driver):
     driver = appium_driver
@@ -95,11 +95,23 @@ def test_login(city,appium_driver):
     driver.find_elements(By.ID, "com.goibibo:id/lytChildNode1")[0].click()
     time.sleep(4)
     driver.find_element(By.ID, "com.goibibo:id/verticalHomeSearchButton").click()
-    time.sleep(1)
+    time.sleep(10)
     citytext = driver.find_element(By.XPATH, "//android.widget.TextView[contains(@text, 'Top Areas to Stay')]").text
     print(citytext)
     """Attach Screenshot to allure report"""
-    # allure.attach(driver.get_screenshot_as_png(), name="Screenshot", attachment_type=AttachmentType.PNG) ###Success Sceenshot
+    allure.attach(driver.get_screenshot_as_png(), name="Screenshot", attachment_type=AttachmentType.PNG) ###Success Sceenshot
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 #######Code From Lecture##############
