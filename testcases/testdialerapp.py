@@ -11,8 +11,8 @@ desired_caps = dict(
 
     deviceName='Android',
     platformName='Android',
-    appPackage='com.samsung.android.dialer',
-    appActivity='.DialtactsActivity',
+    appPackage='com.android.dialer',
+    appActivity='.main.impl.MainActivity',
 )
 
 # appium_service = AppiumService()
@@ -23,16 +23,17 @@ driver = webdriver.Remote('http://127.0.0.1:4723/wd/hub', desired_caps)
 
 time.sleep(1)
 
-# driver.find_element(By.ID, 'com.android.dialer:id/fab').click()
-# time.sleep(3)
-driver.find_element(By.ID, 'com.samsung.android.dialer:id/one').click()
-driver.find_element(By.ID, "com.samsung.android.dialer:id/two").click()
-driver.find_element(By.ID, "com.samsung.android.dialer:id/three").click()
-driver.find_element(By.ID, "com.samsung.android.dialer:id/four").click()
-driver.find_element(By.ID, "com.samsung.android.dialer:id/one").click()
-driver.find_element(By.ID, "com.samsung.android.dialer:id/one").click()
+driver.find_element(By.ID, 'com.android.dialer:id/fab').click()
+time.sleep(3)
+driver.find_element(By.XPATH, "//android.widget.TextView[@text='1']").click()
+driver.find_element(By.XPATH, "//android.widget.TextView[@text='2']").click()
+driver.find_element(By.XPATH, "//android.widget.TextView[@text='3']").click()
+driver.find_element(By.XPATH, "//android.widget.TextView[@text='4']").click()
+driver.find_element(By.XPATH, "//android.widget.TextView[@text='5']").click()
+driver.find_element(By.XPATH, "//android.widget.TextView[@text='6']").click()
+driver.find_element(By.XPATH, "//android.widget.TextView[@text='0']").click()
 
-driver.find_element(By.ID, "com.samsung.android.dialer:id/callButtonContainer").click()
+driver.find_element(By.ID, "com.android.dialer:id/dialpad_floating_action_button").click()
 
 time.sleep(2)
 driver.quit()
