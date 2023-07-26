@@ -20,7 +20,7 @@ desired_caps = dict(
     appActivity='.activities.PeopleActivity',
 )
 
-# appium_service = AppiumService()
+# #appium_service = AppiumService()
 # appium_service.start()
 
 
